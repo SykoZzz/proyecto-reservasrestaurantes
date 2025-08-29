@@ -2,19 +2,56 @@
     ViewData["Title"] = "Mesa Lista";
 }
 
-<div class="text-center">
-    <h1 class="display-3 fw-bold" style="color:#6D4C41;">Mesa Lista</h1>
-    <p class="lead mb-4" style="color:#5D4037;">
-        Tu plataforma para gestionar reservas de restaurantes de manera rápida y sencilla 🍽️
-    </p>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#BA965A;">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="/" style="color:white;">
+            🍽️ Mesa Lista
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" asp-controller="Restaurantes" asp-action="Index">Restaurantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" asp-controller="Reservas" asp-action="Index">Mis Reservas</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <!-- Botones -->
-    <div class="mt-4">
-        <a class="btn btn-warning btn-lg me-3 shadow" asp-controller="Restaurantes" asp-action="Index">
-            Ver Restaurantes
-        </a>
-        <a class="btn btn-dark btn-lg shadow" asp-controller="Reservas" asp-action="Index">
-            Ver Mis Reservas
-        </a>
+<div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
+    <div class="text-center py-5">
+        <h1 class="display-3 fw-bold" 
+            style="background: linear-gradient(90deg, #FF7043, #8D6E63); 
+                   -webkit-background-clip: text; 
+                   -webkit-text-fill-color: transparent;">
+            Mesa Lista
+        </h1>
+
+        <p class="lead mb-4 text-muted">
+            Tu plataforma para gestionar reservas de restaurantes de manera rápida y sencilla 🍽️
+        </p>
+
+        <div class="mt-5">
+            <a class="btn btn-lg px-5 py-3 me-3 shadow-lg" 
+               style="background-color:#FF7043; border:none; color:white; border-radius: 12px; transition:0.3s;" 
+               asp-controller="Restaurantes" asp-action="Index"
+               onmouseover="this.style.backgroundColor='#E64A19'" 
+               onmouseout="this.style.backgroundColor='#FF7043'">
+                🍴 Ver Restaurantes
+            </a>
+
+            <a class="btn btn-lg px-5 py-3 shadow-lg" 
+               style="background-color:#3E2723; border:none; color:white; border-radius: 12px; transition:0.3s;" 
+               asp-controller="Reservas" asp-action="Index"
+               onmouseover="this.style.backgroundColor='#5D4037'" 
+               onmouseout="this.style.backgroundColor='#3E2723'">
+                📅 Ver Mis Reservas
+            </a>
+        </div>
     </div>
 </div>
