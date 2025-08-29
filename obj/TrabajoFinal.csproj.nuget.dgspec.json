@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\j3930\\Desktop\\TrabajoFinal\\TrabajoFinal.csproj": {}
+    "C:\\Users\\Windows\\proyecto-reservasrestaurantes\\TrabajoFinal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\j3930\\Desktop\\TrabajoFinal\\TrabajoFinal.csproj": {
+    "C:\\Users\\Windows\\proyecto-reservasrestaurantes\\TrabajoFinal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\j3930\\Desktop\\TrabajoFinal\\TrabajoFinal.csproj",
+        "projectUniqueName": "C:\\Users\\Windows\\proyecto-reservasrestaurantes\\TrabajoFinal.csproj",
         "projectName": "TrabajoFinal",
-        "projectPath": "C:\\Users\\j3930\\Desktop\\TrabajoFinal\\TrabajoFinal.csproj",
-        "packagesPath": "C:\\Users\\j3930\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\j3930\\Desktop\\TrabajoFinal\\obj\\",
+        "projectPath": "C:\\Users\\Windows\\proyecto-reservasrestaurantes\\TrabajoFinal.csproj",
+        "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Windows\\proyecto-reservasrestaurantes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\j3930\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Windows\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"

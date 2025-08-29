@@ -1,8 +1,20 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Mesa Lista";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-3 fw-bold" style="color:#6D4C41;">Mesa Lista</h1>
+    <p class="lead mb-4" style="color:#5D4037;">
+        Tu plataforma para gestionar reservas de restaurantes de manera rápida y sencilla 🍽️
+    </p>
+
+    <!-- Botones -->
+    <div class="mt-4">
+        <a class="btn btn-warning btn-lg me-3 shadow" asp-controller="Restaurantes" asp-action="Index">
+            Ver Restaurantes
+        </a>
+        <a class="btn btn-dark btn-lg shadow" asp-controller="Reservas" asp-action="Index">
+            Ver Mis Reservas
+        </a>
+    </div>
 </div>
