@@ -1,34 +1,77 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TrabajoFinal</title>
-    <script type="importmap"></script>
+    <title>@ViewData["Title"] - Mesa Lista</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TrabajoFinal.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #FFF8E1; /* Fondo crema */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Para forzar el footer al fondo */
+        }
+        main {
+            flex: 1; /* Ocupa el espacio disponible */
+        }
+        .navbar-custom {
+            background-color: #c59571; /* Mostaza oscuro */
+        }
+        .navbar-custom .nav-link {
+            color: #4E342E !important; /* Marrón oscuro */
+            font-weight: 500;
+        }
+        .navbar-custom .navbar-brand {
+            color: #4E342E !important;
+            font-weight: bold;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+        }
+        footer {
+            background-color: #c59571; /* Mostaza oscuro */
+            color: #4E342E;
+            font-weight: 500;
+            padding: 15px 0;
+            margin-top: auto; /* Se pega abajo */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom shadow-sm mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TrabajoFinal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <!-- Logo SVG minimalista -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="#4E342E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3" />
+                        <path d="M10 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3" />
+                        <path d="M18 3l2 7-2 7" />
+                    </svg>
+                    Mesa Lista
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" 
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li><li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Restaurantes" asp-action="Index">Restaurantes</a><li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Reservas" asp-action="Index">Reservas</a>
+                            <a class="nav-link" asp-area="" asp-controller="Restaurantes" asp-action="Index">Restaurantes</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Reservas" asp-action="Index">Reservas</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -36,17 +79,17 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <main class="container py-4">
+        @RenderBody()
+    </main>
+
+    <footer class="text-center">
         <div class="container">
-            &copy; 2025 - TrabajoFinal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - Mesa Lista | Tu app de reservas de restaurantes 🍴
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
