@@ -1,0 +1,25 @@
+@model Restaurante
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.ImagenUrl" class="img-fluid rounded shadow" alt="@Model.Nombre" />
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.Nombre</h2>
+            <p><strong>Tipo:</strong> @Model.Tipo</p>
+            <p><strong>Dirección:</strong> @Model.Direccion - @Model.Distrito</p>
+            <p><strong>Precio Promedio:</strong> S/. @Model.PrecioPromedio</p>
+            <p><strong>Rating:</strong> ⭐ @Model.Rating</p>
+
+            <a class="btn btn-success" href="@Url.Action("Create", "Reservas", new { restauranteId = Model.Id })">
+                Reservar Mesa
+            </a>
+            <a class="btn btn-secondary" href="@Url.Action("Index", "Restaurantes")">Volver</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+@model IEnumerable<Reserva>
+
+@{
+    ViewData["Title"] = "Mis Reservas";
+}
+
+<h2 class="mb-4">📅 Mis Reservas</h2>
+
+<table class="table table-striped shadow">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Restaurante</th>
+            <th>Fecha</th>
+            <th>Personas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NombreCliente</td>
+                <td>@item.Restaurante?.Nombre</td>
+                <td>@item.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@item.Personas</td>
+            </tr>
+        }
+    </tbody>
+</table>

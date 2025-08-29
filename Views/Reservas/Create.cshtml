@@ -1,0 +1,36 @@
+@model Reserva
+
+@{
+    ViewData["Title"] = "Reservar Mesa";
+}
+
+<h2>Reservar en @ViewBag.RestauranteNombre</h2>
+
+<form asp-action="Create" method="post" class="mt-4">
+    <input type="hidden" asp-for="RestauranteId" />
+
+    <div class="mb-3">
+        <label asp-for="NombreCliente" class="form-label"></label>
+        <input asp-for="NombreCliente" class="form-control" />
+        <span asp-validation-for="NombreCliente" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Fecha" class="form-label"></label>
+        <input asp-for="Fecha" class="form-control" type="datetime-local" />
+        <span asp-validation-for="Fecha" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Personas" class="form-label"></label>
+        <input asp-for="Personas" class="form-control" type="number" min="1" />
+        <span asp-validation-for="Personas" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+    <a class="btn btn-secondary" href="@Url.Action("Index", "Restaurantes")">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
