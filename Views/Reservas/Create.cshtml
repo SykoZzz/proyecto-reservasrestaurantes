@@ -1,0 +1,91 @@
+@model Reserva
+
+@{
+    ViewData["Title"] = "Reservar Mesa";
+}
+
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#BA965A;">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="/" style="color:white;">
+            🍽️ Mesa Lista
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" asp-controller="Restaurantes" asp-action="Index">Restaurantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" asp-controller="Reservas" asp-action="Index">Mis Reservas</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Fondo principal -->
+<div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
+    <div class="container py-5">
+        <div class="card shadow-lg border-0 rounded-4" style="max-width:600px; margin:auto;">
+            <div class="card-body p-5">
+                <!-- Título -->
+                <h2 class="fw-bold text-center mb-4" 
+                    style="color:#3E2723;">
+                    Reservar en <span style="color:#BA965A;">@ViewBag.RestauranteNombre</span>
+                </h2>
+
+                <!-- Formulario -->
+                <form asp-action="Create" method="post">
+                    <input type="hidden" asp-for="RestauranteId" />
+
+                    <!-- Nombre -->
+                    <div class="mb-3">
+                        <label asp-for="NombreCliente" class="form-label fw-semibold" style="color:#5D4037;"></label>
+                        <input asp-for="NombreCliente" class="form-control border-0 shadow-sm rounded-3" />
+                        <span asp-validation-for="NombreCliente" class="text-danger"></span>
+                    </div>
+
+                    <!-- Fecha -->
+                    <div class="mb-3">
+                        <label asp-for="Fecha" class="form-label fw-semibold" style="color:#5D4037;"></label>
+                        <input asp-for="Fecha" class="form-control border-0 shadow-sm rounded-3" type="datetime-local" />
+                        <span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>
+
+                    <!-- Personas -->
+                    <div class="mb-3">
+                        <label asp-for="Personas" class="form-label fw-semibold" style="color:#5D4037;"></label>
+                        <input asp-for="Personas" class="form-control border-0 shadow-sm rounded-3" type="number" min="1" />
+                        <span asp-validation-for="Personas" class="text-danger"></span>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="submit" 
+                                class="btn px-4 py-2 shadow-lg fw-semibold" 
+                                style="background-color:#BA965A; color:white; border-radius:12px; transition:0.3s;"
+                                onmouseover="this.style.backgroundColor='#8C6B3F'" 
+                                onmouseout="this.style.backgroundColor='#BA965A'">
+                            ✅ Confirmar Reserva
+                        </button>
+
+                        <a class="btn px-4 py-2 shadow-lg fw-semibold" 
+                           style="background-color:#3E2723; color:white; border-radius:12px; transition:0.3s;" 
+                           href="@Url.Action("Index", "Restaurantes")"
+                           onmouseover="this.style.backgroundColor='#5D4037'" 
+                           onmouseout="this.style.backgroundColor='#3E2723'">
+                            ❌ Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

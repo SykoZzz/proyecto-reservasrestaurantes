@@ -1,0 +1,90 @@
+@model IEnumerable<appReservas.Models.Reserva>
+
+@{
+    ViewData["Title"] = "Mis Reservas";
+}
+
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#BA965A;">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="/" style="color:white;">
+            🍽️ Mesa Lista
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" asp-controller="Restaurantes" asp-action="Index">Restaurantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold active" asp-controller="Reservas" asp-action="Index">Mis Reservas</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Fondo principal -->
+<div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
+    <div class="container py-5">
+
+        <!-- 🔔 Mostrar mensaje si el usuario no ha iniciado sesión -->
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-warning text-center shadow-sm fw-semibold">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <div class="card shadow-lg border-0 rounded-4 p-4">
+            <!-- Título -->
+            <h2 class="fw-bold mb-4 text-center" style="color:#3E2723;">
+                Mis <span style="color:#BA965A;">Reservas</span>
+            </h2>
+
+            <!-- Si no hay reservas -->
+            @if (Model == null || !Model.Any())
+            {
+                <p class="text-center fw-semibold" style="color:#5D4037;">
+                    No tienes reservas registradas todavía. 🍴
+                </p>
+            }
+            else
+            {
+                <!-- Tabla -->
+                <div class="table-responsive">
+                    <table class="table align-middle text-center shadow-sm rounded-3 overflow-hidden">
+                        <thead style="background-color:#BA965A; color:white;">
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Restaurante</th>
+                                <th>Fecha</th>
+                                <th>Personas</th>
+                                <th>Cancelar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr style="background-color:#fff;">
+                                    <td class="fw-semibold" style="color:#5D4037;">@item.NombreCliente</td>
+                                    <td>@item.Restaurante?.Nombre</td>
+                                    <td>@item.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>@item.Personas</td>
+                                    <td>
+                                        <a asp-action="Cancel" asp-route-id="@item.Id" 
+                                           class="btn btn-sm btn-danger rounded-3 shadow-sm fw-semibold">
+                                            Cancelar
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
