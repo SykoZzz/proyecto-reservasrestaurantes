@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\crist\\Desktop\\reserva final\\proyecto-reservasrestaurantes\\appReservas.csproj": {}
+    "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes\\appReservas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\crist\\Desktop\\reserva final\\proyecto-reservasrestaurantes\\appReservas.csproj": {
+    "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes\\appReservas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\crist\\Desktop\\reserva final\\proyecto-reservasrestaurantes\\appReservas.csproj",
+        "projectUniqueName": "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes\\appReservas.csproj",
         "projectName": "appReservas",
-        "projectPath": "C:\\Users\\crist\\Desktop\\reserva final\\proyecto-reservasrestaurantes\\appReservas.csproj",
-        "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\crist\\Desktop\\reserva final\\proyecto-reservasrestaurantes\\obj\\",
+        "projectPath": "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes\\appReservas.csproj",
+        "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\crist\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Windows\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -44,6 +44,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "EFCore.NamingConventions": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.9, )"
@@ -83,6 +87,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.4, )"
             }
           },
           "imports": [
@@ -104,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
