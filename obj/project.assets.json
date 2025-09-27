@@ -8460,19 +8460,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\j3930\\.nuget\\packages\\": {}
+    "C:\\Users\\crist\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\j3930\\Desktop\\appReservas\\appReservas.csproj",
+      "projectUniqueName": "C:\\Users\\crist\\Desktop\\reserva final\\proyecto-reservasrestaurantes\\appReservas.csproj",
       "projectName": "appReservas",
-      "projectPath": "C:\\Users\\j3930\\Desktop\\appReservas\\appReservas.csproj",
-      "packagesPath": "C:\\Users\\j3930\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\j3930\\Desktop\\appReservas\\obj\\",
+      "projectPath": "C:\\Users\\crist\\Desktop\\reserva final\\proyecto-reservasrestaurantes\\appReservas.csproj",
+      "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\crist\\Desktop\\reserva final\\proyecto-reservasrestaurantes\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\j3930\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\crist\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -8562,7 +8562,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

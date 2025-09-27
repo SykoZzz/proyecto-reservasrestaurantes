@@ -4,69 +4,84 @@
     ViewData["Title"] = "Detalles";
 }
 
-<!-- Barra de navegación -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#BA965A;">
-    <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/" style="color:white;">
-            🍽️ Mesa Lista
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold active" asp-controller="Restaurantes" asp-action="Index">Restaurantes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" asp-controller="Reservas" asp-action="Index">Mis Reservas</a>
-                </li>
-            </ul>
+<!-- Imagen de portada -->
+<div class="position-relative" style="height: 80vh; overflow: hidden;">
+    <img src="@Model.ImagenUrl" class="w-100 h-100" style="object-fit: cover;" alt="@Model.Nombre" />
+    <!-- Overlay oscuro -->
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+
+    <!-- Texto central -->
+    <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+        <h1 class="display-4 fw-bold">@Model.Nombre</h1>
+        <p class="fs-5">
+            ⭐ @Model.Rating &nbsp; | &nbsp; 💰 S/. @Model.PrecioPromedio &nbsp; | &nbsp; 🍽 @Model.Tipo
+        </p>
+        <a href="#reservaSection" class="btn btn-warning btn-lg mt-3">📅 Reservar Mesa</a>
+    </div>
+</div>
+
+<!-- Sección sobre el restaurante -->
+<section class="container py-5" id="reservaSection">
+    <div class="row mb-5">
+        <div class="col-md-8 mx-auto text-center">
+            <h2 class="fw-bold mb-3">Sobre @Model.Nombre</h2>
+            <p class="text-muted fs-5">
+                <!-- Aquí podrías poner la descripción del restaurante -->
+                Bienvenido a @Model.Nombre, donde ofrecemos platos deliciosos y experiencias gastronómicas únicas en @Model.Distrito.
+            </p>
         </div>
     </div>
-</nav>
 
-<!-- Fondo principal -->
-<div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
-    <div class="container py-5">
-        <div class="card shadow-lg border-0 rounded-4 p-4">
-            <div class="row g-4 align-items-center">
-                <!-- Imagen -->
-                <div class="col-md-6 text-center">
-                    <img src="@Model.ImagenUrl" 
-                         class="img-fluid rounded-4 shadow-lg" 
-                         alt="@Model.Nombre" 
-                         style="max-height:350px; object-fit:cover;" />
-                </div>
+    <!-- Formulario de reserva -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4 rounded-4">
+                <h3 class="fw-bold mb-4 text-center">Hacer una Reserva</h3>
+                <form asp-action="Create" asp-controller="Reservas" method="post">
+                    <input type="hidden" name="restauranteId" value="@Model.Id" />
 
-                <!-- Información -->
-                <div class="col-md-6">
-                    <h2 class="fw-bold mb-3" style="color:#3E2723;">@Model.Nombre</h2>
-                    <p><strong>🍽️ Tipo:</strong> @Model.Tipo</p>
-                    <p><strong>📍 Dirección:</strong> @Model.Direccion - @Model.Distrito</p>
-                    <p><strong>💰 Precio Promedio:</strong> S/. @Model.PrecioPromedio</p>
-                    <p><strong>⭐ Rating:</strong> @Model.Rating</p>
-
-                    <!-- Botones -->
-                    <div class="mt-4">
-                        <a class="btn px-4 py-2 shadow-lg fw-semibold me-2" 
-                           style="background-color:#BA965A; color:white; border-radius:12px; transition:0.3s;" 
-                           href="@Url.Action("Create", "Reservas", new { restauranteId = Model.Id })"
-                           onmouseover="this.style.backgroundColor='#8C6B3F'" 
-                           onmouseout="this.style.backgroundColor='#BA965A'">
-                            📅 Reservar Mesa
-                        </a>
-
-                        <a class="btn px-4 py-2 shadow-lg fw-semibold" 
-                           style="background-color:#3E2723; color:white; border-radius:12px; transition:0.3s;" 
-                           href="@Url.Action("Index", "Restaurantes")"
-                           onmouseover="this.style.backgroundColor='#5D4037'" 
-                           onmouseout="this.style.backgroundColor='#3E2723'">
-                            ⬅️ Volver
-                        </a>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="Nombre" required>
                     </div>
-                </div>
+
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono" name="Telefono" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fecha" name="Fecha" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="hora" class="form-label">Hora</label>
+                        <input type="time" class="form-control" id="hora" name="Hora" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="personas" class="form-label">Número de Personas</label>
+                        <input type="number" class="form-control" id="personas" name="Personas" min="1" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning w-100 fw-bold">📅 Reservar</button>
+                </form>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Opcional: Scroll suave al hacer clic en "Reservar Mesa" -->
+@section Scripts{
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+}
