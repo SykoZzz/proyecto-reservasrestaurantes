@@ -1,0 +1,66 @@
+@model PROYECTO_RESERVASRESTAURANTES.Models.Nosotros
+
+@{
+    ViewData["Title"] = "Nosotros";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h2 class="card-title text-primary">@Model.Titulo</h2>
+                    <p class="card-text">@Model.Descripcion</p>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h4 class="card-title text-success">Restaurantes en nuestra plataforma:</h4>
+                    <ul class="list-group list-group-flush mb-3">
+                        @foreach (var r in Model.Restaurantes)
+                        {
+                            <li class="list-group-item">@r</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h4 class="card-title text-info">Contáctanos</h4>
+                    @if (TempData["Mensaje"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["Mensaje"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <form asp-action="Index" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label fw-bold"></label>
+                            <input asp-for="Nombre" class="form-control" placeholder="Tu nombre" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Correo" class="form-label fw-bold"></label>
+                            <input asp-for="Correo" class="form-control" placeholder="ejemplo@correo.com" />
+                            <span asp-validation-for="Correo" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Mensaje" class="form-label fw-bold"></label>
+                            <textarea asp-for="Mensaje" class="form-control" rows="4" placeholder="Escribe tu mensaje"></textarea>
+                            <span asp-validation-for="Mensaje" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
