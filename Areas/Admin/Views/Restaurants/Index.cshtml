@@ -1,29 +1,70 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model List<appReservas.Models.Restaurante>
-<div class="container mt-4">
-    <h3>Restaurantes</h3>
-    @if (TempData["ok"] is string ok) { <div class="alert alert-success">@ok</div> }
-    <a asp-area="Admin" asp-controller="Restaurants" asp-action="Create" class="btn btn-primary btn-sm mb-3">Nuevo</a>
 
-    <div class="table-responsive">
-        <table class="table table-striped align-middle">
-            <thead>
-                <tr><th>Nombre</th><th>Tipo</th><th>Distrito</th><th>Rating</th><th></th></tr>
-            </thead>
-            <tbody>
-            @foreach (var r in Model)
-            {
-                <tr>
-                    <td>@r.Nombre</td>
-                    <td>@r.Tipo</td>
-                    <td>@r.Distrito</td>
-                    <td>@r.Rating</td>
-                    <td>
-                        <a asp-area="Admin" asp-controller="Restaurants" asp-action="Edit" asp-route-id="@r.Id" class="btn btn-outline-secondary btn-sm">Editar</a>
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
+<div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold"
+                    style="background: linear-gradient(90deg, #FF7043, #8D6E63);
+                           -webkit-background-clip: text;
+                           -webkit-text-fill-color: transparent;">
+                    🍽️ Restaurantes
+                </h2>
+                <p class="text-muted mb-0">Gestiona los restaurantes registrados en Mesa Lista.</p>
+            </div>
+            <a asp-area="Admin" asp-controller="Restaurants" asp-action="Create"
+               class="btn btn-lg fw-semibold shadow-sm"
+               style="background-color:#FF7043; color:white; border-radius:12px;">
+                ➕ Nuevo restaurante
+            </a>
+        </div>
+
+```
+    @if (TempData["ok"] is string ok)
+    {
+        <div class="alert alert-success shadow-sm">@ok</div>
+    }
+
+    <div class="card border-0 shadow-lg" style="border-radius:16px;">
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                    <thead class="table-light">
+                        <tr class="text-secondary">
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Distrito</th>
+                            <th>Rating</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var r in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@r.Nombre</td>
+                            <td>@r.Tipo</td>
+                            <td>@r.Distrito</td>
+                            <td>@r.Rating</td>
+                            <td class="text-center">
+                                <a asp-area="Admin" asp-controller="Restaurants" asp-action="Edit"
+                                   asp-route-id="@r.Id"
+                                   class="btn btn-sm px-3 fw-semibold"
+                                   style="background-color:#8D6E63; color:white; border:none; border-radius:10px;"
+                                   onmouseover="this.style.backgroundColor='#5D4037'"
+                                   onmouseout="this.style.backgroundColor='#8D6E63'">
+                                    ✏️ Editar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+</div>
+```
+
 </div>

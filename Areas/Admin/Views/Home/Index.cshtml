@@ -1,28 +1,73 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Panel de administración";
+ViewData["Title"] = "Panel de Administración";
 }
-<div class="container mt-4">
-    <h2>@ViewData["Title"]</h2>
 
-    <div class="row g-3 mt-2">
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <div class="text-muted">Restaurantes</div>
-                    <div class="h3">@ViewBag.Restaurantes</div>
-                    <a asp-area="Admin" asp-controller="Restaurants" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2">Gestionar restaurantes</a>
+<div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold display-5"
+                style="background: linear-gradient(90deg, #2E7D32, #66BB6A);
+                       -webkit-background-clip: text;
+                       -webkit-text-fill-color: transparent;">
+                ⚙️ Panel de Administración
+            </h1>
+            <p class="text-muted fs-5">Gestiona los datos y usuarios del sistema Mesa Lista.</p>
+        </div>
+
+```
+    <div class="row g-4 justify-content-center">
+        <!-- Restaurantes -->
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0" 
+                 style="border-radius:16px; background-color:white;">
+                <div class="card-body text-center py-4">
+                    <div class="text-muted fs-5 mb-2">🍽️ Restaurantes</div>
+                    <div class="display-6 fw-bold" style="color:#FF7043;">
+                        @ViewBag.Restaurantes
+                    </div>
+                    <a asp-area="Admin" asp-controller="Restaurants" asp-action="Index"
+                       class="btn btn-lg mt-3 px-4 shadow-sm"
+                       style="background-color:#FF7043; color:white; border:none; border-radius:12px;"
+                       onmouseover="this.style.backgroundColor='#E64A19'"
+                       onmouseout="this.style.backgroundColor='#FF7043'">
+                        Gestionar Restaurantes
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <div class="text-muted">Dueños</div>
-                    <div class="h3">@ViewBag.Owners</div>
-                    <a asp-area="Admin" asp-controller="Owners" asp-action="Index" class="btn btn-sm btn-outline-dark mt-2">Administrar dueños</a>
+
+        <!-- Dueños -->
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0" 
+                 style="border-radius:16px; background-color:white;">
+                <div class="card-body text-center py-4">
+                    <div class="text-muted fs-5 mb-2">👤 Dueños</div>
+                    <div class="display-6 fw-bold" style="color:#3E2723;">
+                        @ViewBag.Owners
+                    </div>
+                    <a asp-area="Admin" asp-controller="Owners" asp-action="Index"
+                       class="btn btn-lg mt-3 px-4 shadow-sm"
+                       style="background-color:#3E2723; color:white; border:none; border-radius:12px;"
+                       onmouseover="this.style.backgroundColor='#5D4037'"
+                       onmouseout="this.style.backgroundColor='#3E2723'">
+                        Administrar Dueños
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="text-center mt-5">
+        <a asp-controller="Home" asp-action="Index"
+           class="btn btn-lg px-5 py-3 shadow-sm"
+           style="background-color:#BA965A; border:none; color:white; border-radius:12px; transition:0.3s;"
+           onmouseover="this.style.backgroundColor='#8D6E63'"
+           onmouseout="this.style.backgroundColor='#BA965A'">
+           ⬅️ Volver al inicio
+        </a>
+    </div>
+</div>
+```
+
 </div>
