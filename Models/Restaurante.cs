@@ -9,4 +9,5 @@ public class Restaurante
     public decimal PrecioPromedio { get; set; }
     public decimal Rating { get; set; }
     public string ImagenUrl { get; set; }
+
 }

@@ -16,10 +16,23 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>() 
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
 
+
+
 var app = builder.Build();
+
+app.UseAuthentication();                      // <-- IMPORTANTE
+app.UseAuthorization(); 
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

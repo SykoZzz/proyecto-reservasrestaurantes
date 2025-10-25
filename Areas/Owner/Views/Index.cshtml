@@ -1,0 +1,63 @@
+@model Tuple<appReservas.Models.Restaurante?, List<appReservas.Models.Reserva>>
+@{
+    ViewData["Title"] = "Mi restaurante";
+    var restaurante = Model.Item1;
+    var reservas = Model.Item2;
+}
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class="alert alert-warning mt-3">@ViewBag.Mensaje</div>
+    }
+    else if (restaurante is not null)
+    {
+        <div class="card shadow-sm mt-3">
+            <div class="card-body">
+                <h4 class="card-title mb-1">@restaurante.Nombre</h4>
+                <div class="text-muted">
+                    @restaurante.Tipo · @restaurante.Distrito · ⭐ @restaurante.Rating · Promedio: @restaurante.PrecioPromedio
+                </div>
+                <div>@restaurante.Direccion</div>
+                @if (!string.IsNullOrWhiteSpace(restaurante.ImagenUrl))
+                {
+                    <img src="@restaurante.ImagenUrl" alt="foto" class="rounded mt-2" style="width:180px;height:120px;object-fit:cover;" />
+                }
+            </div>
+        </div>
+
+        <h5 class="mt-4">Reservas</h5>
+        @if (reservas.Count == 0)
+        {
+            <div class="alert alert-info">No hay reservas.</div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Fecha</th>
+                            <th>Cliente</th>
+                            <th>Personas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for (int i = 0; i < reservas.Count; i++)
+                    {
+                        var r = reservas[i];
+                        <tr>
+                            <td>@(i+1)</td>
+                            <td>@r.Fecha.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td>@r.NombreCliente</td>
+                            <td>@r.Personas</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+</div>
