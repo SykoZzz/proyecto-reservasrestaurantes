@@ -1,12 +1,89 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model appReservas.Models.Restaurante
-<div class="container mt-4">
-    <h3>Editar restaurante</h3>
-    <form method="post" asp-area="Admin" asp-controller="Restaurants" asp-action="Edit">
-        @Html.AntiForgeryToken()
-        <input type="hidden" asp-for="Id" />
-        <partial name="_FormRestaurante" model="Model" />
-        <button class="btn btn-primary">Guardar</button>
-        <a asp-area="Admin" asp-controller="Restaurants" asp-action="Index" class="btn btn-link">Volver</a>
-    </form>
+
+<div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold"
+                style="background: linear-gradient(90deg, #FF7043, #8D6E63);
+                       -webkit-background-clip: text;
+                       -webkit-text-fill-color: transparent;">
+                ✏️ Editar Restaurante
+            </h2>
+            <p class="text-muted">Actualiza la información de este restaurante en Mesa Lista.</p>
+        </div>
+
+```
+    <div class="card shadow-lg border-0 mx-auto" style="max-width:800px; border-radius:16px;">
+        <div class="card-body p-4">
+            <form method="post" asp-area="Admin" asp-controller="Restaurants" asp-action="Edit">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label asp-for="Nombre" class="form-label fw-semibold text-secondary"></label>
+                        <input asp-for="Nombre" class="form-control form-control-lg"
+                               style="border-radius:12px; border-color:#D7CCC8;" />
+                        <span asp-validation-for="Nombre" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Tipo" class="form-label fw-semibold text-secondary"></label>
+                        <input asp-for="Tipo" class="form-control form-control-lg"
+                               style="border-radius:12px; border-color:#D7CCC8;" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Direccion" class="form-label fw-semibold text-secondary"></label>
+                        <input asp-for="Direccion" class="form-control form-control-lg"
+                               style="border-radius:12px; border-color:#D7CCC8;" />
+                        <span asp-validation-for="Direccion" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Distrito" class="form-label fw-semibold text-secondary"></label>
+                        <input asp-for="Distrito" class="form-control form-control-lg"
+                               style="border-radius:12px; border-color:#D7CCC8;" />
+                        <span asp-validation-for="Distrito" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label asp-for="PrecioPromedio" class="form-label fw-semibold text-secondary"></label>
+                        <input asp-for="PrecioPromedio" class="form-control form-control-lg"
+                               style="border-radius:12px; border-color:#D7CCC8;" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label asp-for="Rating" class="form-label fw-semibold text-secondary"></label>
+                        <input asp-for="Rating" class="form-control form-control-lg"
+                               style="border-radius:12px; border-color:#D7CCC8;" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label asp-for="ImagenUrl" class="form-label fw-semibold text-secondary"></label>
+                        <input asp-for="ImagenUrl" class="form-control form-control-lg"
+                               style="border-radius:12px; border-color:#D7CCC8;" />
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-5">
+                    <a asp-area="Admin" asp-controller="Restaurants" asp-action="Index"
+                       class="btn btn-light px-4 py-2 fw-semibold"
+                       style="border-radius:12px; color:#3E2723; border:1px solid #D7CCC8;">
+                        ⬅️ Volver
+                    </a>
+                    <button type="submit" class="btn px-5 py-2 fw-semibold shadow-sm"
+                            style="background-color:#FF7043; color:white; border:none; border-radius:12px;"
+                            onmouseover="this.style.backgroundColor='#E64A19'"
+                            onmouseout="this.style.backgroundColor='#FF7043'">
+                        Guardar Cambios 💾
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+```
+
 </div>

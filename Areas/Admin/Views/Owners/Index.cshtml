@@ -1,22 +1,86 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model List<(Microsoft.AspNetCore.Identity.IdentityUser user, string? restaurante)>
-<div class="container mt-4">
-    <h3>Dueños</h3>
-    @if (TempData["ok"] is string ok) { <div class="alert alert-success">@ok</div> }
-    <a asp-area="Admin" asp-controller="Owners" asp-action="Create" class="btn btn-primary btn-sm mb-3">Crear dueño</a>
 
-    <div class="table-responsive">
-        <table class="table table-striped align-middle">
-            <thead><tr><th>Email</th><th>Restaurante</th></tr></thead>
-            <tbody>
-            @foreach (var x in Model)
-            {
-                <tr>
-                    <td>@x.user.Email</td>
-                    <td>@(string.IsNullOrWhiteSpace(x.restaurante) ? "— Sin asignar —" : x.restaurante)</td>
-                </tr>
-            }
-            </tbody>
-        </table>
+<div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
+    <div class="container py-5">
+
+```
+    <!-- Encabezado -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold"
+            style="background: linear-gradient(90deg, #3E2723, #8D6E63);
+                   -webkit-background-clip: text;
+                   -webkit-text-fill-color: transparent;">
+            👥 Dueños Registrados
+        </h2>
+        <p class="text-muted">Consulta y gestiona los dueños registrados en el sistema.</p>
     </div>
+
+    <!-- Mensaje de confirmación -->
+    @if (TempData["ok"] is string ok)
+    {
+        <div class="alert alert-success text-center shadow-sm" 
+             style="border-radius:12px;">@ok</div>
+    }
+
+    <!-- Botón de crear -->
+    <div class="text-end mb-4">
+        <a asp-area="Admin" asp-controller="Owners" asp-action="Create"
+           class="btn shadow-sm px-4 py-2 fw-semibold"
+           style="background-color:#ac6a56; color:white; border:none; border-radius:12px;"
+           onmouseover="this.style.backgroundColor='#E64A19'"
+           onmouseout="this.style.backgroundColor='#ac6a56'">
+            ➕ Crear Dueño
+        </a>
+    </div>
+
+    <!-- Tabla -->
+    <div class="card shadow-lg border-0" style="border-radius:16px;">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table align-middle mb-0" style="border-radius:16px; overflow:hidden;">
+                    <thead style="background-color:#BA965A; color:white;">
+                        <tr>
+                            <th scope="col" class="py-3 ps-4">Email</th>
+                            <th scope="col">Restaurante Asignado</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color:white;">
+                        @if (Model.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="2" class="text-center py-4 text-muted">No hay dueños registrados.</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var x in Model)
+                            {
+                                <tr style="border-bottom:1px solid #F0E0D4;">
+                                    <td class="ps-4">@x.user.Email</td>
+                                    <td>
+                                        @(string.IsNullOrWhiteSpace(x.restaurante)
+                                            ? "— Sin asignar —"
+                                            : x.restaurante)
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón volver -->
+    <div class="text-center mt-4">
+        <a asp-area="Admin" asp-controller="Home" asp-action="Index"
+           class="btn btn-light px-5 py-2 fw-semibold"
+           style="border-radius:12px; color:#3E2723; border:1px solid #D7CCC8;">
+           ⬅️ Volver al Panel
+        </a>
+    </div>
+</div>
+```
+
 </div>
