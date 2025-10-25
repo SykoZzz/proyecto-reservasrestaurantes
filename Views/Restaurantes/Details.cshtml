@@ -1,16 +1,15 @@
-@model Restaurante
+@model appReservas.Models.Restaurante
 
 @{
     ViewData["Title"] = "Detalles";
+    var apiKey = ViewData["GoogleMapsApiKey"]?.ToString();
 }
 
 <!-- Imagen de portada -->
 <div class="position-relative" style="height: 80vh; overflow: hidden;">
     <img src="@Model.ImagenUrl" class="w-100 h-100" style="object-fit: cover;" alt="@Model.Nombre" />
-    <!-- Overlay oscuro -->
     <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
 
-    <!-- Texto central -->
     <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
         <h1 class="display-4 fw-bold">@Model.Nombre</h1>
         <p class="fs-5">
@@ -26,9 +25,15 @@
         <div class="col-md-8 mx-auto text-center">
             <h2 class="fw-bold mb-3">Sobre @Model.Nombre</h2>
             <p class="text-muted fs-5">
-                <!-- Aquí podrías poner la descripción del restaurante -->
                 Bienvenido a @Model.Nombre, donde ofrecemos platos deliciosos y experiencias gastronómicas únicas en @Model.Distrito.
             </p>
+        </div>
+    </div>
+
+    <!-- Mapa del restaurante -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-10">
+            <div id="map" style="height:400px;width:100%;" class="shadow-sm rounded-4"></div>
         </div>
     </div>
 
@@ -72,9 +77,26 @@
     </div>
 </section>
 
-<!-- Opcional: Scroll suave al hacer clic en "Reservar Mesa" -->
 @section Scripts{
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=@apiKey&callback=initMap">
+    </script>
+
     <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: { lat: @Model.Latitude, lng: @Model.Longitude }
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: @Model.Latitude, lng: @Model.Longitude },
+                map: map,
+                title: "@Model.Nombre"
+            });
+        }
+
+        // Scroll suave para reservas
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
