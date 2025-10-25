@@ -1,0 +1,35 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model appReservas.Models.Restaurante
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control"/>
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Tipo" class="form-label"></label>
+        <input asp-for="Tipo" class="form-control"/>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Direccion" class="form-label"></label>
+        <input asp-for="Direccion" class="form-control"/>
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Distrito" class="form-label"></label>
+        <input asp-for="Distrito" class="form-control"/>
+        <span asp-validation-for="Distrito" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="PrecioPromedio" class="form-label"></label>
+        <input asp-for="PrecioPromedio" class="form-control"/>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Rating" class="form-label"></label>
+        <input asp-for="Rating" class="form-control"/>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="ImagenUrl" class="form-label"></label>
+        <input asp-for="ImagenUrl" class="form-control"/>
+    </div>
+</div>

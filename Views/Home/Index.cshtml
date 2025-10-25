@@ -1,4 +1,7 @@
-﻿﻿@{
+﻿﻿@using Microsoft.AspNetCore.Identity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
     ViewData["Title"] = "Mesa Lista";
 }
 
@@ -10,6 +13,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -18,6 +22,17 @@
                 <li class="nav-item">
                     <a class="nav-link fw-semibold" asp-controller="Reservas" asp-action="Index">Mis Reservas</a>
                 </li>
+
+                @* ---- SOLO ADMIN: enlace al panel ---- *@
+                @* CTA SOLO ADMIN *@
+                @if (User?.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                            Admin
+                        </a>
+                    </li>
+                }
             </ul>
         </div>
     </div>
@@ -25,9 +40,9 @@
 
 <div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
     <div class="text-center py-5">
-        <h1 class="display-3 fw-bold" 
-            style="background: linear-gradient(90deg, #FF7043, #8D6E63); 
-                   -webkit-background-clip: text; 
+        <h1 class="display-3 fw-bold"
+            style="background: linear-gradient(90deg, #FF7043, #8D6E63);
+                   -webkit-background-clip: text;
                    -webkit-text-fill-color: transparent;">
             Mesa Lista
         </h1>
@@ -37,21 +52,32 @@
         </p>
 
         <div class="mt-5">
-            <a class="btn btn-lg px-5 py-3 me-3 shadow-lg" 
-               style="background-color:#FF7043; border:none; color:white; border-radius: 12px; transition:0.3s;" 
+            <a class="btn btn-lg px-5 py-3 me-3 shadow-lg"
+               style="background-color:#FF7043; border:none; color:white; border-radius: 12px; transition:0.3s;"
                asp-controller="Restaurantes" asp-action="Index"
-               onmouseover="this.style.backgroundColor='#E64A19'" 
+               onmouseover="this.style.backgroundColor='#E64A19'"
                onmouseout="this.style.backgroundColor='#FF7043'">
                 🍴 Ver Restaurantes
             </a>
 
-            <a class="btn btn-lg px-5 py-3 shadow-lg" 
-               style="background-color:#3E2723; border:none; color:white; border-radius: 12px; transition:0.3s;" 
+            <a class="btn btn-lg px-5 py-3 shadow-lg"
+               style="background-color:#3E2723; border:none; color:white; border-radius: 12px; transition:0.3s;"
                asp-controller="Reservas" asp-action="Index"
-               onmouseover="this.style.backgroundColor='#5D4037'" 
+               onmouseover="this.style.backgroundColor='#5D4037'"
                onmouseout="this.style.backgroundColor='#3E2723'">
                 📅 Ver Mis Reservas
             </a>
+
+            @* ---- SOLO ADMIN: CTA rápida al flujo de administración ---- *@
+            @if (User?.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
+            {
+                <a class="btn btn-lg px-5 py-3 ms-3 shadow-lg"
+                style="background-color:#2E7D32; border:none; color:white; border-radius: 12px; transition:0.3s;"
+                asp-area="Admin" asp-controller="Home" asp-action="Index">
+                ⚙️ Panel Admin
+                </a>
+
+            }
         </div>
     </div>
 </div>

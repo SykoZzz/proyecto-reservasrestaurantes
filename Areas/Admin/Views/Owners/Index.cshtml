@@ -1,0 +1,22 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<(Microsoft.AspNetCore.Identity.IdentityUser user, string? restaurante)>
+<div class="container mt-4">
+    <h3>Dueños</h3>
+    @if (TempData["ok"] is string ok) { <div class="alert alert-success">@ok</div> }
+    <a asp-area="Admin" asp-controller="Owners" asp-action="Create" class="btn btn-primary btn-sm mb-3">Crear dueño</a>
+
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead><tr><th>Email</th><th>Restaurante</th></tr></thead>
+            <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.user.Email</td>
+                    <td>@(string.IsNullOrWhiteSpace(x.restaurante) ? "— Sin asignar —" : x.restaurante)</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

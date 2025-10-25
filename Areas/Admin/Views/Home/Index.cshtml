@@ -1,0 +1,28 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Panel de administración";
+}
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+    <div class="row g-3 mt-2">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="text-muted">Restaurantes</div>
+                    <div class="h3">@ViewBag.Restaurantes</div>
+                    <a asp-area="Admin" asp-controller="Restaurants" asp-action="Index" class="btn btn-sm btn-outline-primary mt-2">Gestionar restaurantes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="text-muted">Dueños</div>
+                    <div class="h3">@ViewBag.Owners</div>
+                    <a asp-area="Admin" asp-controller="Owners" asp-action="Index" class="btn btn-sm btn-outline-dark mt-2">Administrar dueños</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
