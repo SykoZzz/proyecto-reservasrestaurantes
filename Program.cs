@@ -75,8 +75,8 @@ else
         redisOptions.KeepAlive = 60;
         redisOptions.ReconnectRetryPolicy = new ExponentialRetry(5000);
         redisOptions.Ssl = true;
-        redisOptions.User = "default";            
-        redisOptions.Password = "GrIpBLJOfRNZ88ow4vm9m7Ve9YaZNRT5"; 
+        redisOptions.User = "default";
+        redisOptions.Password = "GrIpBLJOfRNZ88ow4vm9m7Ve9YaZNRT5";
         redisOptions.SslProtocols = SslProtocols.Tls12;
 
         builder.Services.AddStackExchangeRedisCache(options =>
@@ -110,16 +110,36 @@ builder.Services.AddRazorPages();
 var app = builder.Build();
 
 // ======================================================
-// 🔹 MIGRACIONES AUTOMÁTICAS AL ARRANCAR
+// 🔹 MIGRACIONES AUTOMÁTICAS (solo en desarrollo)
 // ======================================================
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var db = services.GetRequiredService<ApplicationDbContext>();
-    db.Database.Migrate();
 
-    // Si existe clase SeedData en tu proyecto, puedes descomentar esto:
-    // await SeedData.EnsureSeedDataAsync(services);
+    if (!app.Environment.IsProduction())
+    {
+        // Solo aplica migraciones automáticas en desarrollo
+        db.Database.Migrate();
+
+        // Si existe clase SeedData en tu proyecto, puedes descomentar esto:
+        // await SeedData.EnsureSeedDataAsync(services);
+    }
+    else
+    {
+        // En producción, solo verifica la conexión sin modificar la base
+        try
+        {
+            if (!db.Database.CanConnect())
+                Console.WriteLine("⚠️ No se pudo conectar a la base de datos Neon.");
+            else
+                Console.WriteLine("✅ Conectado a la base de datos Neon existente (sin aplicar migraciones).");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Error al conectar a la base de datos: {ex.Message}");
+        }
+    }
 }
 
 // ======================================================
