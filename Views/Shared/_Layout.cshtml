@@ -1,4 +1,23 @@
-﻿﻿<!DOCTYPE html>
+﻿﻿@using Microsoft.AspNetCore.Identity
+@using appReservas.Models
+@inject UserManager<ApplicationUser> UserManager
+@{
+    string nombreUsuario = "Invitado";
+
+    if (User.Identity?.IsAuthenticated ?? false)
+    {
+        var user = await UserManager.GetUserAsync(User);
+        if (user != null)
+        {
+            // Si tu clase de usuario tiene el campo "NombreCompleto", úsalo.
+            var nombreProp = user.GetType().GetProperty("NombreCompleto");
+            nombreUsuario = nombreProp != null
+                ? nombreProp.GetValue(user)?.ToString() ?? user.UserName
+                : user.UserName;
+        }
+    }
+}
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -9,7 +28,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Tus estilos -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -19,10 +39,9 @@
         body {
             background-color: #FFF8E1;
             min-height: 100vh;
-            padding-top: 80px; /* espacio para navbar fijo */
+            padding-top: 80px;
         }
 
-        /* Navbar moderna */
         .navbar {
             background-color: #fff9f0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -48,11 +67,6 @@
             gap: 8px;
         }
 
-        .navbar-brand svg {
-            stroke: #BA965A;
-        }
-
-        /* Footer */
         footer {
             background-color: #c59571;
             color: #4E342E;
@@ -60,28 +74,39 @@
             padding: 15px 0;
             margin-top: auto;
         }
+
+        .user-badge {
+            background: #ba965a;
+            color: #fff;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <header>
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="#BA965A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                         fill="none" stroke="#BA965A" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <path d="M4 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3" />
                         <path d="M10 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3" />
                         <path d="M18 3l2 7-2 7" />
                     </svg>
                     Mesa Lista
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav" aria-controls="navbarNav"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
@@ -94,28 +119,39 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Reservas" asp-action="Index">Reservas</a>
                         </li>
-                        <li class="nav-item">
-                            <partial name="_LoginPartial" />
-                        </li>
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li class="nav-item">
+                                <span class="user-badge">
+                                    👤 @nombreUsuario
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <partial name="_LoginPartial" />
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <partial name="_LoginPartial" />
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Contenido de las vistas -->
     <main class="container py-4">
         @RenderBody()
     </main>
 
-    <!-- Footer -->
     <footer class="text-center">
         <div class="container">
             &copy; 2025 - Mesa Lista | Tu app de reservas de restaurantes 🍴
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

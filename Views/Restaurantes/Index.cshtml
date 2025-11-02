@@ -1,11 +1,30 @@
-@model IEnumerable<Restaurante>
+@model IEnumerable<appReservas.Models.Restaurante>
 
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Restaurantes";
 }
 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
 <div class="container py-5">
+    <!-- Mensajes de éxito/error -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
     <h2 class="fw-bold text-center mb-5 text-dark">
         🍽 Restaurantes <span class="text-warning">Disponibles</span>
     </h2>
@@ -28,10 +47,30 @@
                         <p class="mb-1"><i class="fa-solid fa-dollar-sign me-2"></i>S/. @item.PrecioPromedio</p>
                         <p class="mb-3"><i class="fa-solid fa-star me-2"></i>@item.Rating</p>
 
-                        <a href="@Url.Action("Details", "Restaurantes", new { id = item.Id })" 
-                           class="btn btn-warning mt-auto align-self-start">
-                            🔎 Ver Detalles
-                        </a>
+                        <div class="d-flex gap-2 mt-auto">
+                            <!-- Botón Detalles -->
+                            <a href="@Url.Action("Details", "Restaurantes", new { id = item.Id })"
+                               class="btn btn-warning fw-semibold">
+                                🔎 Ver Detalles
+                            </a>
+
+                            <!-- Botón Reservar / Login -->
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <a asp-controller="Reservas"
+                                   asp-action="Create"
+                                   asp-route-restauranteId="@item.Id"
+                                   class="btn btn-success fw-semibold">
+                                    🍽 Reservar
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="/Identity/Account/Login" class="btn btn-outline-secondary fw-semibold">
+                                    🔐 Inicia sesión para reservar
+                                </a>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,5 +87,14 @@
 
     .btn-warning:hover {
         background-color: #c7913e;
+    }
+
+    .btn-success {
+        background-color: #198754;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background-color: #157347;
     }
 </style>
