@@ -5,6 +5,9 @@
     var apiKey = ViewData["GoogleMapsApiKey"]?.ToString();
 }
 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
 <!-- Imagen de portada -->
 <div class="position-relative" style="height: 80vh; overflow: hidden;">
     <img src="@Model.ImagenUrl" class="w-100 h-100" style="object-fit: cover;" alt="@Model.Nombre" />
@@ -15,7 +18,17 @@
         <p class="fs-5">
             ⭐ @Model.Rating &nbsp; | &nbsp; 💰 S/. @Model.PrecioPromedio &nbsp; | &nbsp; 🍽 @Model.Tipo
         </p>
-        <a href="#reservaSection" class="btn btn-warning btn-lg mt-3">📅 Reservar Mesa</a>
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a href="#reservaSection" class="btn btn-warning btn-lg mt-3">📅 Reservar Mesa</a>
+        }
+        else
+        {
+            <a href="/Identity/Account/Login" class="btn btn-outline-light btn-lg mt-3">
+                🔐 Inicia sesión para reservar
+            </a>
+        }
     </div>
 </div>
 
@@ -42,36 +55,40 @@
         <div class="col-md-6">
             <div class="card shadow-lg p-4 rounded-4">
                 <h3 class="fw-bold mb-4 text-center">Hacer una Reserva</h3>
-                <form asp-action="Create" asp-controller="Reservas" method="post">
-                    <input type="hidden" name="restauranteId" value="@Model.Id" />
 
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="Nombre" required>
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                }
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-action="Create" asp-controller="Reservas" method="post">
+                        <input type="hidden" name="restauranteId" value="@Model.Id" />
+
+                        <div class="mb-3">
+                            <label for="fecha" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="fecha" name="Fecha" required min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="personas" class="form-label">Número de Personas</label>
+                            <input type="number" class="form-control" id="personas" name="Personas" min="1" max="20" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-warning w-100 fw-bold">📅 Reservar</button>
+                    </form>
+                }
+                else
+                {
+                    <div class="alert alert-info text-center">
+                        🔐 Debes <a href="/Identity/Account/Login" class="fw-bold text-decoration-none">iniciar sesión</a> para hacer una reserva.
                     </div>
-
-                    <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" id="telefono" name="Telefono" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="fecha" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="fecha" name="Fecha" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="hora" class="form-label">Hora</label>
-                        <input type="time" class="form-control" id="hora" name="Hora" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="personas" class="form-label">Número de Personas</label>
-                        <input type="number" class="form-control" id="personas" name="Personas" min="1" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-warning w-100 fw-bold">📅 Reservar</button>
-                </form>
+                }
             </div>
         </div>
     </div>
@@ -89,14 +106,14 @@
                 center: { lat: @Model.Latitude, lng: @Model.Longitude }
             });
 
-            var marker = new google.maps.Marker({
+            new google.maps.Marker({
                 position: { lat: @Model.Latitude, lng: @Model.Longitude },
                 map: map,
                 title: "@Model.Nombre"
             });
         }
 
-        // Scroll suave para reservas
+        // Scroll suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

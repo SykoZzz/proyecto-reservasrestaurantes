@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using appReservas.Data;
+using appReservas.Data; // ✅ Asegúrate de importar Data
 using StackExchange.Redis;
 using System.Security.Authentication;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
+using appReservas.Models;
+using Microsoft.AspNetCore.Identity.UI.Services; // ✅ Importar IEmailSender
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,41 +22,53 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // ======================================================
-// 🔹 CONFIGURACIÓN IDENTITY Y ROLES
+// 🔹 CONFIGURACIÓN IDENTITY CON ROLES
 // ======================================================
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
 })
-.AddRoles<IdentityRole>()
-.AddEntityFrameworkStores<ApplicationDbContext>();
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
+
+// ======================================================
+// 🔹 REGISTRAR DummyEmailSender SIMPLIFICADO
+// ======================================================
+builder.Services.AddSingleton<IEmailSender, DummyEmailSender>(); // ✅ Ya no depende de ILogger
 
 // ======================================================
 // 🔹 REDIRECCIÓN AUTOMÁTICA SEGÚN ROL
 // ======================================================
 builder.Services.ConfigureApplicationCookie(options =>
 {
+
+    // 🔧 Corrección: Identity usa /Identity/Account/Login, no /Account/Login
+    options.LoginPath = "/Identity/Account/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+
+
     options.Events.OnSigningIn = async context =>
     {
-        var userManager = context.HttpContext.RequestServices.GetRequiredService<UserManager<IdentityUser>>();
+        var userManager = context.HttpContext.RequestServices.GetRequiredService<UserManager<ApplicationUser>>();
         var user = await userManager.GetUserAsync(context.Principal);
 
         if (user != null)
         {
             if (await userManager.IsInRoleAsync(user, "Administrador"))
-            {
                 context.Properties.RedirectUri = "/Admin/Reservas";
-            }
             else if (await userManager.IsInRoleAsync(user, "Empleado"))
-            {
                 context.Properties.RedirectUri = "/Reservas/MisReservas";
-            }
         }
     };
 });
 
 // ======================================================
-// 🔹 REDIS CONFIG (Render Cloud o local)
+// 🔹 REDIS CONFIG
 // ======================================================
 if (builder.Environment.IsDevelopment())
 {
@@ -91,7 +105,7 @@ else
 }
 
 // ======================================================
-// 🔹 SESSION (usa Redis si está disponible)
+// 🔹 SESSION
 // ======================================================
 builder.Services.AddSession(options =>
 {
@@ -119,15 +133,10 @@ using (var scope = app.Services.CreateScope())
 
     if (!app.Environment.IsProduction())
     {
-        // Solo aplica migraciones automáticas en desarrollo
         db.Database.Migrate();
-
-        // Si existe clase SeedData en tu proyecto, puedes descomentar esto:
-        // await SeedData.EnsureSeedDataAsync(services);
     }
     else
     {
-        // En producción, solo verifica la conexión sin modificar la base
         try
         {
             if (!db.Database.CanConnect())

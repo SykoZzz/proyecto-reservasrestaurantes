@@ -1,7 +1,3 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
-
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,18 +7,19 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using appReservas.Models; // 👈 importante
 
 namespace appReservas.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(
-            SignInManager<IdentityUser> signInManager,
-            UserManager<IdentityUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager,
             ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
@@ -44,13 +41,15 @@ namespace appReservas.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "Correo electrónico")]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [Display(Name = "Contraseña")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Recordarme")]
             public bool RememberMe { get; set; }
         }
 
@@ -63,12 +62,10 @@ namespace appReservas.Areas.Identity.Pages.Account
 
             returnUrl ??= Url.Content("~/");
 
-            // Limpiar cookie externa antes de login
+            // Limpia cookies externas
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ExternalLogins = (await _signInManager
-                .GetExternalAuthenticationSchemesAsync()).ToList();
-
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             ReturnUrl = returnUrl;
         }
 
@@ -78,16 +75,11 @@ namespace appReservas.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                // Buscar usuario por email
                 var user = await _userManager.FindByEmailAsync(Input.Email);
                 if (user != null)
                 {
-                    // Intentar login con su username
                     var result = await _signInManager.PasswordSignInAsync(
-                        user.UserName,
-                        Input.Password,
-                        Input.RememberMe,
-                        lockoutOnFailure: false);
+                        user.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
 
                     if (result.Succeeded)
                     {
@@ -96,14 +88,10 @@ namespace appReservas.Areas.Identity.Pages.Account
                     }
                 }
 
-                // Falló el login
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError(string.Empty, "Intento de inicio de sesión inválido.");
             }
 
-            // Si algo falla, se muestra la página otra vez
             return Page();
         }
     }
 }
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license. 

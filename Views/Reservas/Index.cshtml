@@ -1,15 +1,23 @@
 @model IEnumerable<appReservas.Models.Reserva>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
     ViewData["Title"] = "Mis Reservas";
 }
 
-<!-- Barra de navegación -->
+@if (!SignInManager.IsSignedIn(User))
+{
+    <script>
+        // 🔒 Redirige al login si el usuario no está autenticado
+        window.location.href = '/Identity/Account/Login';
+    </script>
+}
+
+<!-- 🔝 Barra de navegación -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#BA965A;">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/" style="color:white;">
-            🍽️ Mesa Lista
-        </a>
+        <a class="navbar-brand fw-bold" href="/" style="color:white;">🍽️ Mesa Lista</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,39 +29,61 @@
                 <li class="nav-item">
                     <a class="nav-link fw-semibold active" asp-controller="Reservas" asp-action="Index">Mis Reservas</a>
                 </li>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item">
+                        <form method="post" asp-area="Identity" asp-page="/Account/Logout">
+                            <button type="submit" class="btn btn-sm btn-outline-light ms-3">Cerrar sesión</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="btn btn-sm btn-outline-light ms-3" href="/Identity/Account/Login">Iniciar sesión</a>
+                    </li>
+                }
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- Fondo principal -->
+<!-- 🌆 Fondo principal -->
 <div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
     <div class="container py-5">
 
-        <!-- 🔔 Mostrar mensaje si el usuario no ha iniciado sesión -->
+        <!-- ⚡ Contenedor de notificaciones -->
+        <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
+
         @if (TempData["ErrorMessage"] != null)
         {
-            <div class="alert alert-warning text-center shadow-sm fw-semibold">
-                @TempData["ErrorMessage"]
-            </div>
+            <script>
+                showToast("@TempData["ErrorMessage"]", "danger");
+            </script>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                showToast("@TempData["SuccessMessage"]", "success");
+            </script>
         }
 
         <div class="card shadow-lg border-0 rounded-4 p-4">
-            <!-- Título -->
             <h2 class="fw-bold mb-4 text-center" style="color:#3E2723;">
                 Mis <span style="color:#BA965A;">Reservas</span>
             </h2>
 
-            <!-- Si no hay reservas -->
             @if (Model == null || !Model.Any())
             {
-                <p class="text-center fw-semibold" style="color:#5D4037;">
-                    No tienes reservas registradas todavía. 🍴
-                </p>
+                <div class="text-center py-4">
+                    <p class="fw-semibold mb-3" style="color:#5D4037;">Aún no tienes reservas registradas. 🍴</p>
+                    <a asp-controller="Restaurantes" asp-action="Index" class="btn btn-warning fw-bold rounded-3 px-4">
+                        🍽️ Explorar Restaurantes
+                    </a>
+                </div>
             }
             else
             {
-                <!-- Tabla -->
                 <div class="table-responsive">
                     <table class="table align-middle text-center shadow-sm rounded-3 overflow-hidden">
                         <thead style="background-color:#BA965A; color:white;">
@@ -62,7 +92,7 @@
                                 <th>Restaurante</th>
                                 <th>Fecha</th>
                                 <th>Personas</th>
-                                <th>Cancelar</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,9 +104,10 @@
                                     <td>@item.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
                                     <td>@item.Personas</td>
                                     <td>
-                                        <a asp-action="Cancel" asp-route-id="@item.Id" 
-                                           class="btn btn-sm btn-danger rounded-3 shadow-sm fw-semibold">
-                                            Cancelar
+                                        <a asp-action="Cancel" asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-danger rounded-3 shadow-sm fw-semibold"
+                                           onclick="return confirm('¿Seguro que deseas cancelar esta reserva?');">
+                                            ❌ Cancelar
                                         </a>
                                     </td>
                                 </tr>
@@ -88,3 +119,32 @@
         </div>
     </div>
 </div>
+
+<style>
+    .table th { letter-spacing: 0.5px; }
+    .btn-warning { background-color: #BA965A; border: none; }
+    .btn-warning:hover { background-color: #a17845; }
+    .btn-danger:hover { background-color: #c0392b; }
+</style>
+
+@section Scripts{
+<script>
+    function showToast(message, type) {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast align-items-center text-white bg-${type} border-0`;
+        toast.role = "alert";
+        toast.ariaLive = "assertive";
+        toast.ariaAtomic = "true";
+        toast.innerHTML = `
+            <div class="d-flex">
+                <div class="toast-body">${message}</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        `;
+        container.appendChild(toast);
+        const bsToast = new bootstrap.Toast(toast, { delay: 3000 });
+        bsToast.show();
+    }
+</script>
+}

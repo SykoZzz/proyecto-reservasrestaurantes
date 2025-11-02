@@ -1,7 +1,17 @@
 @model Reserva
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
     ViewData["Title"] = "Reservar Mesa";
+}
+
+@if (!SignInManager.IsSignedIn(User))
+{
+    <script>
+        // 🔒 Redirige automáticamente al login si el usuario no está autenticado
+        window.location.href = '/Identity/Account/Login';
+    </script>
 }
 
 <!-- Barra de navegación -->
@@ -32,8 +42,7 @@
         <div class="card shadow-lg border-0 rounded-4" style="max-width:600px; margin:auto;">
             <div class="card-body p-5">
                 <!-- Título -->
-                <h2 class="fw-bold text-center mb-4" 
-                    style="color:#3E2723;">
+                <h2 class="fw-bold text-center mb-4" style="color:#3E2723;">
                     Reservar en <span style="color:#BA965A;">@ViewBag.RestauranteNombre</span>
                 </h2>
 
@@ -43,39 +52,53 @@
 
                     <!-- Nombre -->
                     <div class="mb-3">
-                        <label asp-for="NombreCliente" class="form-label fw-semibold" style="color:#5D4037;"></label>
-                        <input asp-for="NombreCliente" class="form-control border-0 shadow-sm rounded-3" />
+                        <label asp-for="NombreCliente" class="form-label fw-semibold" style="color:#5D4037;">
+                            👤 Nombre del Cliente
+                        </label>
+                        <input asp-for="NombreCliente"
+                               class="form-control border-0 shadow-sm rounded-3"
+                               placeholder="Ingrese su nombre completo" />
                         <span asp-validation-for="NombreCliente" class="text-danger"></span>
                     </div>
 
                     <!-- Fecha -->
                     <div class="mb-3">
-                        <label asp-for="Fecha" class="form-label fw-semibold" style="color:#5D4037;"></label>
-                        <input asp-for="Fecha" class="form-control border-0 shadow-sm rounded-3" type="datetime-local" />
+                        <label asp-for="Fecha" class="form-label fw-semibold" style="color:#5D4037;">
+                            🗓 Fecha y Hora de la Reserva
+                        </label>
+                        <input asp-for="Fecha"
+                               class="form-control border-0 shadow-sm rounded-3"
+                               type="datetime-local" />
                         <span asp-validation-for="Fecha" class="text-danger"></span>
                     </div>
 
                     <!-- Personas -->
                     <div class="mb-3">
-                        <label asp-for="Personas" class="form-label fw-semibold" style="color:#5D4037;"></label>
-                        <input asp-for="Personas" class="form-control border-0 shadow-sm rounded-3" type="number" min="1" />
+                        <label asp-for="Personas" class="form-label fw-semibold" style="color:#5D4037;">
+                            👥 Número de Personas
+                        </label>
+                        <input asp-for="Personas"
+                               class="form-control border-0 shadow-sm rounded-3"
+                               type="number"
+                               min="1"
+                               placeholder="Ejemplo: 4" />
                         <span asp-validation-for="Personas" class="text-danger"></span>
                     </div>
 
                     <!-- Botones -->
                     <div class="d-flex justify-content-between mt-4">
-                        <button type="submit" 
-                                class="btn px-4 py-2 shadow-lg fw-semibold" 
+                        <button type="submit"
+                                class="btn px-4 py-2 shadow-lg fw-semibold"
                                 style="background-color:#BA965A; color:white; border-radius:12px; transition:0.3s;"
-                                onmouseover="this.style.backgroundColor='#8C6B3F'" 
+                                onmouseover="this.style.backgroundColor='#8C6B3F'"
                                 onmouseout="this.style.backgroundColor='#BA965A'">
                             ✅ Confirmar Reserva
                         </button>
 
-                        <a class="btn px-4 py-2 shadow-lg fw-semibold" 
-                           style="background-color:#3E2723; color:white; border-radius:12px; transition:0.3s;" 
-                           href="@Url.Action("Index", "Restaurantes")"
-                           onmouseover="this.style.backgroundColor='#5D4037'" 
+                        <a class="btn px-4 py-2 shadow-lg fw-semibold"
+                           style="background-color:#3E2723; color:white; border-radius:12px; transition:0.3s;"
+                           asp-controller="Reservas" asp-action="Index"
+                           onmouseover="this.style.backgroundColor='#5D4037'"
                            onmouseout="this.style.backgroundColor='#3E2723'">
                             ❌ Cancelar
                         </a>
@@ -86,6 +109,15 @@
     </div>
 </div>
 
+<!-- Evitar fechas pasadas -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const fechaInput = document.querySelector("input[name='Fecha']");
+        const now = new Date().toISOString().slice(0, 16);
+        fechaInput.min = now;
+    });
+</script>
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
