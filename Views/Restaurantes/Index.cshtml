@@ -25,9 +25,36 @@
         </div>
     }
 
+<h2 class="fw-bold text-center mb-4 text-dark">
+    💡 Recomendaciones <span class="text-warning">para ti</span>
+</h2>
+
+<div id="recomendaciones-container" class="card shadow-sm border-0 rounded-4 mb-5 p-4 bg-light">
+    <p class="text-muted text-center mb-3">
+        Basado en tus preferencias y reservas anteriores 🍽️
+    </p>
+
+    <div class="text-center mb-3">
+        <button id="btn-cargar" class="btn btn-warning fw-semibold px-4 py-2 rounded-pill shadow-sm">
+            Mostrar mis recomendaciones
+        </button>
+    </div>
+
+    <div id="recomendaciones-result" class="mt-4">
+        <!-- Aquí se cargará el partial -->
+    </div>
+
+    <p class="text-center text-secondary small mt-4">
+        Si no ves recomendaciones, asegúrate de haber iniciado sesión y de tener reservas anteriores.
+    </p>
+</div>
+
     <h2 class="fw-bold text-center mb-5 text-dark">
         🍽 Restaurantes <span class="text-warning">Disponibles</span>
     </h2>
+    
+    
+
 
     <div class="list-group">
         @foreach (var item in Model)
@@ -98,3 +125,19 @@
         background-color: #157347;
     }
 </style>
+@section Scripts {
+<script>
+    document.getElementById('btn-cargar').addEventListener('click', async () => {
+        const container = document.getElementById('recomendaciones-result');
+        container.innerHTML = '<p>Cargando...</p>';
+        try {
+            const res = await fetch('/Recomendaciones/MostrarParaUsuario');
+            if (!res.ok) throw new Error('Error al obtener recomendaciones');
+            const html = await res.text();
+            container.innerHTML = html;
+        } catch (err) {
+            container.innerHTML = '<p>No se pudieron cargar recomendaciones. Inicie sesión para ver o haga su primera reserva.</p>';
+        }
+    });
+</script>
+}

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services; // ✅ Importar IEmailSender
 using PROYECTO_RESERVASRESTAURANTES.Integration.galletafortuna; 
 using Stripe;
 using appReservas.Models;
+using appReservas.ML;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -118,6 +119,7 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddHttpClient<GalletaApiIntegration>(); // HttpClient para consumir API externa de RapidAPI
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<RecomendacionMLService>();
 
 // ======================================================
 // 🔹 MVC, Razor y Servicios Auxiliares
