@@ -27,10 +27,24 @@ namespace appReservas.Models
         [Display(Name = "Número de Personas")]
         public int Personas { get; set; }
 
-        // Relaciones
+        // 🔹 Relación con restaurante
         public Restaurante Restaurante { get; set; }
 
         [Required]
         public string UserId { get; set; }
+
+        // 💳 NUEVO: Estado del pago (pendiente / pagado)
+        [Display(Name = "Estado del Pago")]
+        [StringLength(20)]
+        public string EstadoPago { get; set; } = "Pendiente";
+
+        // 💰 NUEVO: Precio de la reserva (puedes cambiar el valor por persona o fijo)
+        [Column(TypeName = "decimal(10,2)")]
+        [Display(Name = "Precio Total")]
+        public decimal Precio { get; set; } = 20.00m;
+
+        // 🧾 NUEVO: ID de sesión de Stripe (para validar pagos completados)
+        [StringLength(255)]
+        public string? StripeSessionId { get; set; }
     }
 }

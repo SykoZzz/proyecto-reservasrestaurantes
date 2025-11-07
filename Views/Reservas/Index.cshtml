@@ -9,12 +9,10 @@
 @if (!SignInManager.IsSignedIn(User))
 {
     <script>
-        // 🔒 Redirige al login si el usuario no está autenticado
         window.location.href = '/Identity/Account/Login';
     </script>
 }
 
-<!-- 🔝 Barra de navegación -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#BA965A;">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="/" style="color:white;">🍽️ Mesa Lista</a>
@@ -48,24 +46,17 @@
     </div>
 </nav>
 
-<!-- 🌆 Fondo principal -->
 <div style="background-color:#F5E9E3; min-height:100vh; padding-top:60px;">
     <div class="container py-5">
-
-        <!-- ⚡ Contenedor de notificaciones -->
         <div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
 
         @if (TempData["ErrorMessage"] != null)
         {
-            <script>
-                showToast("@TempData["ErrorMessage"]", "danger");
-            </script>
+            <script>showToast("@TempData["ErrorMessage"]", "danger");</script>
         }
         @if (TempData["SuccessMessage"] != null)
         {
-            <script>
-                showToast("@TempData["SuccessMessage"]", "success");
-            </script>
+            <script>showToast("@TempData["SuccessMessage"]", "success");</script>
         }
 
         <div class="card shadow-lg border-0 rounded-4 p-4">
@@ -92,6 +83,8 @@
                                 <th>Restaurante</th>
                                 <th>Fecha</th>
                                 <th>Personas</th>
+                                <th>Precio</th>
+                                <th>Estado de Pago</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -103,9 +96,34 @@
                                     <td>@item.Restaurante?.Nombre</td>
                                     <td>@item.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
                                     <td>@item.Personas</td>
+                                    <td>$@item.Precio.ToString("0.00")</td>
                                     <td>
+                                        @if (item.EstadoPago == "Pagado")
+                                        {
+                                            <span class="badge bg-success">Pagado</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-warning text-dark">Pendiente</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.EstadoPago != "Pagado")
+                                        {
+                                            <form asp-controller="Checkout" asp-action="CreateCheckoutSession" method="post" class="d-inline">
+                                                <input type="hidden" name="reservaId" value="@item.Id" />
+                                                <button type="submit" class="btn btn-sm btn-success rounded-3 shadow-sm fw-semibold">
+                                                    💳 Pagar
+                                                </button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-success fw-semibold">✔ Pago completado</span>
+                                        }
+
                                         <a asp-action="Cancel" asp-route-id="@item.Id"
-                                           class="btn btn-sm btn-danger rounded-3 shadow-sm fw-semibold"
+                                           class="btn btn-sm btn-danger rounded-3 shadow-sm fw-semibold ms-2"
                                            onclick="return confirm('¿Seguro que deseas cancelar esta reserva?');">
                                             ❌ Cancelar
                                         </a>
@@ -127,7 +145,7 @@
     .btn-danger:hover { background-color: #c0392b; }
 </style>
 
-@section Scripts{
+@section Scripts {
 <script>
     function showToast(message, type) {
         const container = document.getElementById('toastContainer');
