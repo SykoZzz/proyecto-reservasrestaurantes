@@ -7,6 +7,8 @@ using Microsoft.Extensions.Caching.StackExchangeRedis;
 using appReservas.Models;
 using Microsoft.AspNetCore.Identity.UI.Services; // ✅ Importar IEmailSender
 using PROYECTO_RESERVASRESTAURANTES.Integration.galletafortuna; 
+using Stripe;
+using appReservas.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -123,6 +125,13 @@ builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+
+var stripeSettings = builder.Configuration.GetSection("Stripe").Get<StripeSettings>();
+if (stripeSettings != null && !string.IsNullOrEmpty(stripeSettings.SecretKey))
+{
+    StripeConfiguration.ApiKey = stripeSettings.SecretKey;
+}
 
 var app = builder.Build();
 

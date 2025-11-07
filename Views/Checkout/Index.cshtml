@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Pago con Stripe";
+}
+
+<div class="text-center mt-5">
+    <h2>💳 Pagar con Stripe Checkout</h2>
+    <p>Haz clic en el botón para realizar tu pago.</p>
+
+    <form asp-controller="Checkout" asp-action="CreateCheckoutSession" method="post">
+        <input type="hidden" name="reservaId" value="@Model?.Id" />
+        <button type="submit" class="btn btn-primary btn-lg">Pagar $20.00</button>
+    </form>
+</div>

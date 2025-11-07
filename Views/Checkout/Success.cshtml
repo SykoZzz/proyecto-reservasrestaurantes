@@ -1,0 +1,9 @@
+@{
+    ViewData["Title"] = "Pago Exitoso";
+}
+
+<div class="text-center mt-5">
+    <h2>✅ Pago realizado con éxito</h2>
+    <p>Tu reserva (@ViewBag.ReservaId) ha sido pagada correctamente.</p>
+    <a class="btn btn-success mt-3" asp-controller="Reservas" asp-action="Index">Volver a mis reservas</a>
+</div>

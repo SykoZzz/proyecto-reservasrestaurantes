@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Windows\\Documents\\proyecto-reservasrestaurantes-4\\appReservas.csproj": {}
+    "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes-3\\appReservas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Windows\\Documents\\proyecto-reservasrestaurantes-4\\appReservas.csproj": {
+    "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes-3\\appReservas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Windows\\Documents\\proyecto-reservasrestaurantes-4\\appReservas.csproj",
+        "projectUniqueName": "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes-3\\appReservas.csproj",
         "projectName": "appReservas",
-        "projectPath": "C:\\Users\\Windows\\Documents\\proyecto-reservasrestaurantes-4\\appReservas.csproj",
+        "projectPath": "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes-3\\appReservas.csproj",
         "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Windows\\Documents\\proyecto-reservasrestaurantes-4\\obj\\",
+        "outputPath": "C:\\Users\\Windows\\Downloads\\proyecto-reservasrestaurantes-3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Windows\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -95,6 +95,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.4, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[49.2.0, )"
             }
           },
           "imports": [
