@@ -1,0 +1,23 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Clasificación ML";
+}
+
+<div class="container py-5">
+    <h2 class="fw-bold text-center mb-4 text-dark">
+        🤖 Clasificación de Restaurantes por Precio
+    </h2>
+
+    @if (ViewBag.Nombre != null)
+    {
+        <div class="alert alert-info text-center">
+            <strong>@ViewBag.Nombre</strong> fue clasificado como:
+            <span class="fw-bold text-primary">@ViewBag.Categoria</span>
+        </div>
+    }
+
+    <div class="text-center mt-4">
+        <a href="/Clasificacion/Entrenar" class="btn btn-success me-2">Entrenar Modelo</a>
+        <a href="/Clasificacion/Predecir/1" class="btn btn-primary">Probar con Restaurante #1</a>
+    </div>
+</div>
