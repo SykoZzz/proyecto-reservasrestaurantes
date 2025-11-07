@@ -6,6 +6,7 @@ using System.Security.Authentication;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using appReservas.Models;
 using Microsoft.AspNetCore.Identity.UI.Services; // ✅ Importar IEmailSender
+using PROYECTO_RESERVASRESTAURANTES.Integration.galletafortuna; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -113,6 +114,8 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+builder.Services.AddHttpClient<GalletaApiIntegration>(); // HttpClient para consumir API externa de RapidAPI
+builder.Services.AddHttpClient();
 
 // ======================================================
 // 🔹 MVC, Razor y Servicios Auxiliares

@@ -1,0 +1,19 @@
+@model PROYECTO_RESERVASRESTAURANTES.Integration.galletafortuna.dto.Galleta
+
+@{
+    ViewData["Title"] = "Tu fortuna";
+}
+
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">🥠 Galleta de la Fortuna</h1>
+
+    <div class="alert alert-warning" role="alert">
+        <strong>@Model.Mensaje</strong>
+    </div>
+
+    <form method="get" asp-controller="Galleta" asp-action="Index">
+        <button type="submit" class="btn btn-primary mt-3">
+            Obtener otra fortuna 🔄
+        </button>
+    </form>
+</div>
