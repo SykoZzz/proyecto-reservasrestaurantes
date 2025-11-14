@@ -9309,11 +9309,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\j3930\\Desktop\\Nueva carpeta\\proyecto-reservasrestaurantes\\appReservas.csproj",
+      "projectUniqueName": "C:\\Users\\j3930\\Desktop\\proyecto-reservasrestaurantes\\appReservas.csproj",
       "projectName": "appReservas",
-      "projectPath": "C:\\Users\\j3930\\Desktop\\Nueva carpeta\\proyecto-reservasrestaurantes\\appReservas.csproj",
+      "projectPath": "C:\\Users\\j3930\\Desktop\\proyecto-reservasrestaurantes\\appReservas.csproj",
       "packagesPath": "C:\\Users\\j3930\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\j3930\\Desktop\\Nueva carpeta\\proyecto-reservasrestaurantes\\obj\\",
+      "outputPath": "C:\\Users\\j3930\\Desktop\\proyecto-reservasrestaurantes\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
