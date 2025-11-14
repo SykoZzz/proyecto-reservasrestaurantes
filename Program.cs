@@ -10,6 +10,8 @@ using PROYECTO_RESERVASRESTAURANTES.Integration.galletafortuna;
 using Stripe;
 using appReservas.Models;
 using appReservas.ML;
+using PROYECTO_RESERVASRESTAURANTES.Integration.chatbot;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -120,6 +122,8 @@ builder.Services.AddSession(options =>
 builder.Services.AddHttpClient<GalletaApiIntegration>(); // HttpClient para consumir API externa de RapidAPI
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<RecomendacionMLService>();
+builder.Services.AddHttpClient<ChatbotService>();
+
 
 // ======================================================
 // 🔹 MVC, Razor y Servicios Auxiliares

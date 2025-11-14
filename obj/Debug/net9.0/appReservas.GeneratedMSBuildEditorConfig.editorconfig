@@ -17,157 +17,161 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = appReservas
 build_property.RootNamespace = appReservas
-build_property.ProjectDir = C:\Users\j3930\Desktop\Nueva carpeta\proyecto-reservasrestaurantes\
+build_property.ProjectDir = C:\Users\j3930\Desktop\proyecto-reservasrestaurantes\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\j3930\Desktop\Nueva carpeta\proyecto-reservasrestaurantes
+build_property.MSBuildProjectDirectory = C:\Users\j3930\Desktop\proyecto-reservasrestaurantes
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Admin/Views/Home/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Admin/Views/Owners/Create.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Admin/Views/Owners/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcT3duZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Admin/Views/Owners/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Admin/Views/Owners/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcT3duZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Admin/Views/Restaurants/Create.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Admin/Views/Restaurants/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVzdGF1cmFudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Admin/Views/Restaurants/Edit.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Admin/Views/Restaurants/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVzdGF1cmFudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Admin/Views/Restaurants/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Admin/Views/Restaurants/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVzdGF1cmFudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Admin/Views/Restaurants/_FormRestaurante.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Admin/Views/Restaurants/_FormRestaurante.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVzdGF1cmFudHNcX0Zvcm1SZXN0YXVyYW50ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/Login.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/Logout.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/Register.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Areas/Owner/Views/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Areas/Owner/Views/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcT3duZXJcVmlld3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Checkout/Cancel.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Checkout/Cancel.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcQ2FuY2VsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Checkout/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Checkout/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Checkout/Success.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Checkout/Success.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcU3VjY2Vzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Clasificacion/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Clasificacion/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xhc2lmaWNhY2lvblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Galleta/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Galleta/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FsbGV0YVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Home/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Home/Privacy.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Nosotros/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Nosotros/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9zb3Ryb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Reservas/Create.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Reservas/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Reservas/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Reservas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Restaurantes/Details.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Restaurantes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudGVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Restaurantes/Index.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Restaurantes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Restaurantes/_RecomendacionesPartial.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Restaurantes/_RecomendacionesPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdGF1cmFudGVzXF9SZWNvbWVuZGFjaW9uZXNQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Shared/Error.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Shared/_ChatbotWidget.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGF0Ym90V2lkZ2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/_ViewImports.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/_ViewStart.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/j3930/Desktop/Nueva carpeta/proyecto-reservasrestaurantes/Views/Shared/_Layout.cshtml]
+[C:/Users/j3930/Desktop/proyecto-reservasrestaurantes/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fr7288tgqd
